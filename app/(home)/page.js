@@ -1,3 +1,5 @@
+"use client";
+
 import EventCard from "@/components/EventCard";
 import SwiperComponent from "@/components/SwiperComponent";
 import React from "react";
@@ -12,10 +14,11 @@ function App() {
         Explore Events
       </h1>
 
-      <div className="flex items-center justify-around mt-8 mb-32">
-        {dummyEvents.map((eventData) => (
-          <EventCard eventData={eventData} />
-        ))}
+      <div className="flex flex-wrap items-center justify-center mt-8 mb-32">
+        {dummyEvents?.map(
+          (eventData, index) =>
+            eventData && <EventCard key={index} eventData={eventData} />
+        )}
       </div>
     </div>
   );
