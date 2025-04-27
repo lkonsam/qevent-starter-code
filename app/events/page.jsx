@@ -8,28 +8,30 @@ import { useSearchParams } from "next/navigation";
 
 function EventPage() {
   const [showEvents, setShowEvents] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
   const searchParams = useSearchParams();
+
   const artistName = searchParams.get("artist");
+  const tag = searchParams.get("tag");
 
   React.useEffect(() => {
     const fetchEventsData = async () => {
-      setLoading(true);
       try {
         const response = await fetchEvents();
+        let filteredEvents = response;
+
         if (artistName) {
-          const filteredEvents = response?.filter(
+          filteredEvents = response?.filter(
             (event) => event.artist == artistName
           );
-          setShowEvents(filteredEvents);
-        } else {
-          setShowEvents(response);
         }
+        if (tag) {
+          filteredEvents = filteredEvents?.filter((event) =>
+            event.tags?.includes(tag)
+          );
+        }
+        setShowEvents(filteredEvents);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        console.error(error.message);
       }
     };
     fetchEventsData();
