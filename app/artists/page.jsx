@@ -4,7 +4,7 @@ import React from "react";
 import { fetchArtists } from "@/api/api";
 import ArtistCard from "@/components/ArtistCard";
 
-function EventPage() {
+function ArtistsPage() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -38,4 +38,4 @@ function EventPage() {
   );
 }
 
-export default EventPage;
+export default ArtistsPage;
