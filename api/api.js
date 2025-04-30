@@ -10,7 +10,7 @@ export async function fetchEvents() {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     return [];
   }
 }
@@ -25,7 +25,7 @@ export async function fetchArtists() {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     return [];
   }
 }
@@ -40,7 +40,7 @@ export async function fetchTags() {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     return [];
   }
 }
@@ -55,7 +55,7 @@ export async function fetchEventDetails(eventId) {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     return null;
   }
 }
@@ -74,7 +74,7 @@ export async function handleEventCreate(payload) {
     }
     return await response.json();
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     throw error;
   }
 }

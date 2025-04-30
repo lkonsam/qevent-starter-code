@@ -3,6 +3,7 @@
 import Tag from "@/components/Tag";
 import React from "react";
 import { fetchTags } from "@/api/api";
+import toast, { Toaster } from "react-hot-toast";
 
 function TagPage() {
   const [tagsData, setTagsData] = React.useState([]);
@@ -11,10 +12,11 @@ function TagPage() {
     const fetchData = async () => {
       try {
         const response = await fetchTags();
-        console.log("Response:", response.slice(0, 3));
+        // console.log("Response:", response.slice(0, 3));
         setTagsData(response);
       } catch (error) {
-        console.error("Error fetching tags:", error);
+        // console.error("Error fetching tags:", error);
+        toast.error("Error fetching tags");
       }
     };
     fetchData();
@@ -22,6 +24,9 @@ function TagPage() {
 
   return (
     <div className="h-full">
+      <div>
+        <Toaster />
+      </div>
       <div className="flex flex-wrap items-center justify-center mt-8 mb-32">
         {tagsData?.map(
           (tagData, index) =>

@@ -3,6 +3,7 @@ import { fetchEventDetails } from "@/api/api";
 // import { BASE_URL } from "@/api/api";
 import Tag from "@/components/Tag";
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 function EventDetailPage(props) {
   const { eventId } = props.params;
@@ -19,7 +20,8 @@ function EventDetailPage(props) {
         const response = await fetchEventDetails(eventId);
         setEventData(response);
       } catch (error) {
-        console.error("Error fetching tags:", error);
+        // console.error("Error fetching tags:", error);
+        toast.error("Error fetching event details");
       }
     };
     fetchData();
@@ -31,6 +33,9 @@ function EventDetailPage(props) {
 
   return (
     <div className="m-5">
+      <div>
+        <Toaster />
+      </div>
       <img
         className="w-[30%]  mb-3 group-hover:filter-none shadow-lg m-auto "
         src={eventData.image}

@@ -4,7 +4,7 @@ import Tag from "./Tag";
 import Link from "next/link";
 
 const EventCard = ({ eventData }) => {
-  console.log("Event Data:", eventData);
+  // console.log("Event Data:", eventData);
 
   return (
     <div className="hover-inverse w-[30%] h-fit group transform transition-transform duration-400 hover:scale-110 hover:bg-gradient-to-r hover:from-orange-200 hover:to-white text-dark m-4 border-slate-400 border rounded-md px-8 py-2.5">

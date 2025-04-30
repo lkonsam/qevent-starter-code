@@ -54,7 +54,7 @@ function CreateEventPage() {
       })
       .catch((error) => {
         toast.error("Event creation failed");
-        console.error("Error creating event:", error);
+        // console.error("Error creating event:", error);
       });
   };
 

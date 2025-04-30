@@ -14,7 +14,7 @@ function ArtistsPage() {
       setLoading(true);
       try {
         const response = await fetchArtists();
-        console.log("Response:", response.slice(0, 3));
+        // console.log("Response:", response.slice(0, 3));
         // setData(response.slice(0, 3));
         setData(response);
       } catch (error) {
