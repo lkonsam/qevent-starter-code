@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { handleEventCreate } from "@/api/api";
+import toast, { Toaster } from "react-hot-toast";
 
 function CreateEventPage() {
   const { data: session, status } = useSession();
@@ -52,6 +53,7 @@ function CreateEventPage() {
         router.push("/events");
       })
       .catch((error) => {
+        toast.error("Event creation failed");
         console.error("Error creating event:", error);
       });
   };
@@ -60,6 +62,9 @@ function CreateEventPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
+      <div>
+        <Toaster />
+      </div>
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
           Create New Event
