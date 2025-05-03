@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/api/api";
+import { BASE_URL } from "@/services/baseurl";
 import Tag from "@/components/Tag";
 
 async function EventDetailPage({ params }) {

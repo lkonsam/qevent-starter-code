@@ -1,5 +1,5 @@
 import EventCard from "@/components/EventCard";
-import { BASE_URL } from "@/api/api";
+import { BASE_URL } from "@/services/baseurl";
 
 async function EventPageContent({ searchParams }) {
   const artistName = searchParams?.artist;

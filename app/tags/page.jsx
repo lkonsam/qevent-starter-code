@@ -1,5 +1,5 @@
 import Tag from "@/components/Tag";
-import { BASE_URL } from "@/api/api";
+import { BASE_URL } from "@/services/baseurl";
 
 async function TagPage() {
   const response = await fetch(`${BASE_URL}/tags`);

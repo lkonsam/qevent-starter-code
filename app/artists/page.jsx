@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/api/api";
+import { BASE_URL } from "@/services/baseurl";
 import ArtistCard from "@/components/ArtistCard";
 
 async function ArtistsPage() {

@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { handleEventCreate } from "@/api/api";
+import { handleEventCreate } from "@/services/baseurl";
 import toast, { Toaster } from "react-hot-toast";
 
 function CreateEventPage() {
