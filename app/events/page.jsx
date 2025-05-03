@@ -1,49 +1,27 @@
-"use client";
-
 import EventCard from "@/components/EventCard";
-import React, { Suspense } from "react";
-import { fetchEvents } from "@/api/api";
-import { useSearchParams } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import { BASE_URL } from "@/api/api";
 
-function EventPageContent() {
-  const [showEvents, setShowEvents] = React.useState([]);
-  const searchParams = useSearchParams();
+async function EventPageContent({ searchParams }) {
+  const artistName = searchParams?.artist;
+  const tag = searchParams?.tag;
 
-  const artistName = searchParams.get("artist");
-  const tag = searchParams.get("tag");
+  const response = await await fetch(`${BASE_URL}/events`);
+  let filteredEvents = await response.json();
 
-  React.useEffect(() => {
-    const fetchEventsData = async () => {
-      try {
-        const response = await fetchEvents();
-        let filteredEvents = response;
-
-        if (artistName) {
-          filteredEvents = response?.filter(
-            (event) => event.artist === artistName
-          );
-        }
-        if (tag) {
-          filteredEvents = filteredEvents?.filter((event) =>
-            event.tags?.includes(tag)
-          );
-        }
-        setShowEvents(filteredEvents);
-      } catch (error) {
-        // console.error(error.message);
-        toast.error("Error fetching events");
-      }
-    };
-    fetchEventsData();
-  }, [artistName, tag]);
+  if (artistName) {
+    filteredEvents = filteredEvents?.filter(
+      (event) => event.artist === artistName
+    );
+  }
+  if (tag) {
+    filteredEvents = filteredEvents?.filter((event) =>
+      event.tags?.includes(tag)
+    );
+  }
 
   return (
     <div className="flex flex-wrap items-center justify-center mt-8 mb-32">
-      <div>
-        <Toaster />
-      </div>
-      {showEvents?.map(
+      {filteredEvents?.map(
         (eventData, index) =>
           eventData && <EventCard key={index} eventData={eventData} />
       )}
@@ -51,16 +29,4 @@ function EventPageContent() {
   );
 }
 
-function EventPage() {
-  return (
-    <div className="h-full">
-      <Suspense
-        fallback={<div className="text-center mt-8">Loading events...</div>}
-      >
-        <EventPageContent />
-      </Suspense>
-    </div>
-  );
-}
-
-export default EventPage;
+export default EventPageContent;

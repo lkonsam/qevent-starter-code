@@ -1,31 +1,12 @@
-"use client";
-import { fetchEventDetails } from "@/api/api";
-// import { BASE_URL } from "@/api/api";
+import { BASE_URL } from "@/api/api";
 import Tag from "@/components/Tag";
-import React from "react";
-import toast, { Toaster } from "react-hot-toast";
 
-function EventDetailPage(props) {
-  const { eventId } = props.params;
-  //   const response = await fetch(`${BASE_URL}/events/${eventId}`, {
-  //     next: { revalidate: 10 },
-  //   });
-  //   const eventData = await response.json();
-
-  const [eventData, setEventData] = React.useState([]);
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchEventDetails(eventId);
-        setEventData(response);
-      } catch (error) {
-        // console.error("Error fetching tags:", error);
-        toast.error("Error fetching event details");
-      }
-    };
-    fetchData();
-  }, []);
+async function EventDetailPage({ params }) {
+  const { eventId } = params;
+  const response = await fetch(`${BASE_URL}/events/${eventId}`, {
+    next: { revalidate: 10 },
+  });
+  const eventData = await response.json();
 
   if (!eventData) {
     return <div>Event not found</div>;
@@ -33,9 +14,6 @@ function EventDetailPage(props) {
 
   return (
     <div className="m-5">
-      <div>
-        <Toaster />
-      </div>
       <img
         className="w-[30%]  mb-3 group-hover:filter-none shadow-lg m-auto "
         src={eventData.image}

@@ -25,9 +25,7 @@ const ArtistCard = ({ artistData }) => {
         </div>
         <button
           className=" bg-gradient-to-r from-orange-400 to-teal-600 text-white px-4 py-2 rounded-md font-medium hover:opacity-70"
-          onClick={() => {
-            handleClick(artistData.name);
-          }}
+          onClick={handleClick}
         >
           View Events
         </button>

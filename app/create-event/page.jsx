@@ -50,6 +50,8 @@ function CreateEventPage() {
     // Submit to backend here
     handleEventCreate(formattedEvent)
       .then(() => {
+        revalidatePath("/events");
+        toast.success("Event created successfully");
         router.push("/events");
       })
       .catch((error) => {

@@ -1,8 +1,5 @@
-"use client";
-
 import EventCard from "@/components/EventCard";
 import SwiperComponent from "@/components/SwiperComponent";
-import React from "react";
 import { dummyEvents } from "@/constants/dummyEvents";
 
 function App() {

@@ -1,30 +1,9 @@
-"use client";
-
-import React from "react";
-import { fetchArtists } from "@/api/api";
+import { BASE_URL } from "@/api/api";
 import ArtistCard from "@/components/ArtistCard";
 
-function ArtistsPage() {
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await fetchArtists();
-        // console.log("Response:", response.slice(0, 3));
-        // setData(response.slice(0, 3));
-        setData(response);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+async function ArtistsPage() {
+  const response = await fetch(`${BASE_URL}/artists`);
+  const data = await response.json();
 
   return (
     <div className="h-full">
